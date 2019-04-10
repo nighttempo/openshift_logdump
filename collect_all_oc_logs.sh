@@ -32,9 +32,8 @@ do
   divider >> ${FILE}
   echo "" >> ${FILE}
   while read -r LINE; do
-    [[ "${LINE}" == "" ]] && break;
     echo "${PODNAME} | ${LINE}" >> ${FILE}
-  done <<< $(oc logs ${PODNAME} --all-containers)
+  done <<< $(oc logs ${PODNAME} --all-containers "$@")
   ((COUNTER++))
 done
 
